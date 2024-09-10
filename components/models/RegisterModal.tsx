@@ -5,6 +5,7 @@ import useRegisterModal from "@/hook/useRegisterModal";
 import axios from "axios";
 import { useCallback, useState } from "react";
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
+import { AiFillGithub } from "react-icons/ai";
 import { AiFillFacebook } from "react-icons/ai";
 import { FcGoogle } from "react-icons/fc";
 import { toast } from "react-toastify";
@@ -25,6 +26,7 @@ function RegisterModal({}: Props) {
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<FieldValues>({
     defaultValues: {
@@ -47,7 +49,6 @@ function RegisterModal({}: Props) {
       .catch((err: any) => toast.error("Something Went Wrong"))
       .finally(() => {
         setIsLoading(false);
-        toast.success("Register Successfully");
       });
   };
 
@@ -81,6 +82,7 @@ function RegisterModal({}: Props) {
       />
       <Input
         id="password"
+        type="password"
         label="Password"
         disabled={isLoading}
         register={register}
@@ -93,6 +95,12 @@ function RegisterModal({}: Props) {
   const footerContent = (
     <div className="flex flex-col gap-4 mt-3">
       <hr />
+      <Button
+        outline
+        label="Continue with Github"
+        icon={AiFillGithub}
+        onClick={() => signIn("github")}
+      />
       <Button
         outline
         label="Continue with Google"
@@ -126,7 +134,7 @@ function RegisterModal({}: Props) {
       isOpen={registerModel.isOpen}
       title="Register"
       actionLabel="Continue"
-      onClose={registerModel.onClose}
+      onClose={()=>{registerModel.onClose(); reset()}}
       onSubmit={handleSubmit(onSubmit)}
       body={bodyContent}
       footer={footerContent}
