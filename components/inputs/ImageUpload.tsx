@@ -9,6 +9,8 @@ declare global {
   var cloudinary: any;
 }
 
+const uploadPreset = "c0lgucuu"
+
 type Props = {
   onChange: (value: string) => void;
   value: string;
@@ -18,6 +20,7 @@ function ImageUpload({ onChange, value }: Props) {
   const handleCallback = useCallback(
     (result: any) => {
       onChange(result.info.secure_url);
+      console.log({result})
     },
     [onchange]
   );
@@ -25,7 +28,7 @@ function ImageUpload({ onChange, value }: Props) {
   return (
     <CldUploadWidget
       onUpload={handleCallback}
-      uploadPreset="cptcecyi"
+      uploadPreset={uploadPreset}
       options={{
         maxFiles: 1,
       }}

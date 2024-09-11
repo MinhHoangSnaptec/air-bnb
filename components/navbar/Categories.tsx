@@ -106,6 +106,7 @@ function Categories({}: Props) {
 
   const isMainPage = pathname === "/";
 
+  //Because it's inside the Navbar, and the Navbar is in the root Layout
   if (!isMainPage) {
     return null;
   }

@@ -14,6 +14,7 @@ type Props = {
 function CategoryBox({ icon: Icon, label, selected }: Props) {
   const router = useRouter();
   const params = useSearchParams();
+  // console.log({params : params?.toString(), cate:params?.get('category'), test: params?.get('test')})
 
   const handleClick = useCallback(() => {
     let currentQuery = {};
@@ -21,12 +22,14 @@ function CategoryBox({ icon: Icon, label, selected }: Props) {
     if (params) {
       currentQuery = qs.parse(params.toString());
     }
+    console.log({currentQuery})
 
     const updatedQuery: any = {
       ...currentQuery,
       category: label,
     };
 
+    //toggle cate
     if (params?.get("category") === label) {
       delete updatedQuery.category;
     }
@@ -38,6 +41,8 @@ function CategoryBox({ icon: Icon, label, selected }: Props) {
       },
       { skipNull: true }
     );
+
+    console.log({url})
 
     router.push(url);
   }, [label, params, router]);

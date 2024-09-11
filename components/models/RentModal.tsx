@@ -62,6 +62,8 @@ function RentModal({}: Props) {
   const bathroomCount = watch("bathroomCount");
   const imageSrc = watch("imageSrc");
 
+  console.log({category, location, guestCount})
+
   const Map = useMemo(
     () =>
       dynamic(() => import("../Map"), {
@@ -213,8 +215,8 @@ function RentModal({}: Props) {
     bodyContent = (
       <div className="flex flex-col gap-8">
         <Heading
-          title="Now, set your price"
-          subtitle="How much do you charge per night?"
+          title="How would you describe your place?"
+          subtitle="Short and sweet works best!"
         />
         <Input
           id="title"

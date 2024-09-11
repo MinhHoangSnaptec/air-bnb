@@ -32,10 +32,10 @@ export default async function RootLayout({
       <body className={font.className}>
         <ClientOnly>
           <ToastContainerBar />
-          {/* <SearchModal /> */}
+          <SearchModal />
           <RegisterModal />
           <LoginModal />
-          {/* <RentModal /> */}
+          <RentModal />
           <Navbar currentUser={currentUser} />
         </ClientOnly>
         <div className="pb-20 pt-28">{children}</div>
